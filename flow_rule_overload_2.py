@@ -36,7 +36,7 @@ def check_delay(host, target ,results):
         filter = 'END{ print (/^rtt/? "OK "$5" ms":"FAIL") }'
         filter_command = f"'{filter}'"
         result = host.cmd(ping_command + filter_command)
-        print(result)
+        #print(result)
         #results.push(host.cmd(f'ping h3 -c 1 i 0.01'))
 
     
@@ -48,10 +48,10 @@ def install_flow_rule(host,host2,freq):
         net4 = ipaddress.ip_network('10.0.0.0/8')
         for ip in net4.hosts():
             # info(f'**** change h4 ip to {str(ip)}\n')
-            host2.setIP(str(ip))
-            result = ping_command(host,ip)
+            host.setIP(str(ip))
+            result = ping_command(host,'10.0.0.3')
             # print(result)
-            # time.sleep(time_to_sleep)
+            time.sleep(time_to_sleep)
     print('closing attack')
     return None
 def myNetwork():
